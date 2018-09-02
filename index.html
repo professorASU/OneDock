@@ -19,7 +19,7 @@
                 <div class="accountform">
                     <form id="accountCreate" action="javascript:ca()">
                         <div class="darkHeading">新規登録</div>
-                        <input type="email" id="acEm" class="inputText" placeholder="メールアドレス"><br>
+                        <input type="email" spellcheck="false" id="acEm" class="inputText" placeholder="メールアドレス"><br>
                         <div class="errorText" id="mailInUseAC" style="display: none;">このメールアドレスはもう使用されています。</div>
                         <input type="password" id="acPwO" class="inputText" placeholder="パスワード"><br>
                         <input type="password" id="acPwT" class="inputText" placeholder="パスワードの再入力"><br>
@@ -32,7 +32,7 @@
                     </form>
                     <form id="accountLogin" action="javascript:la()">
                         <div class="darkHeading">ログイン</div>
-                        <input type="email" id="lgEm" class="inputText" placeholder="メールアドレス"><br>
+                        <input type="email" spellcheck="false" id="lgEm" class="inputText" placeholder="メールアドレス"><br>
                         <input type="password" id="lgPw" class="inputText" type="password" placeholder="パスワード"><br>
                         <input type="submit" value="ログイン" id="lgLAbtn" class="btn" disabled>
                         <div class="errorText" id="wrongInfoLG" style="display: none;">メールアドレスまたはパスワードが間違っています。</div>

@@ -389,8 +389,12 @@ input:read-only {
     border-top-right-radius: 9px;
     border-top-left-radius: 9px;
 }
-.dbWindowContent {
-
+#dbWindowContent {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 323px;
+    overflow: auto;
 }
 .tabBtn {
     color: #fff;
@@ -459,7 +463,8 @@ input:read-only {
 #dbNameHeader {
     color: #fff;
     font-size: 24px;
-    width: 800px;
+    max-width: 800px;
+    width: 90%;
     margin-right: auto;
     margin-left: auto;
     margin-top: 20px;
@@ -470,6 +475,18 @@ input:read-only {
     background: #3897f0;
     border: 1px solid #3897f0;
     color: #fff;
+    padding: 8px;
+    font-size: 15px;
+    border-radius: 8px;
+    outline: none;
+    max-width: 300px;
+    background: #fe5b5b;
+    border-color: #fe5b5b;
+}
+.purpBtn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: #fff;
     width: 85%;
     padding: 8px;
     font-size: 15px;
@@ -477,11 +494,12 @@ input:read-only {
     margin-top: 20px;
     outline: none;
     max-width: 300px;
-    background: #fe5b5b;
-    border-color: #fe5b5b;
+    background: #685bfe;
+    border: 1px solid #685bfe;
 }
 .bottomBtnInterface {
-    width: 800px;
+    max-width: 800px;
+    width: 90%;
     margin-right:auto;
     margin-left:auto;
 }
@@ -497,4 +515,47 @@ input:read-only {
 .tabBtn:disabled {
     opacity: 1;
     border-bottom-color: #fff;
+}
+.dataSetWrapper {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    padding: 10px 10px 10px 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.tagTitle {
+    background: #3897f0;
+    color: #fff;
+    display: inline-block;
+    padding: 6px 10px 6px 10px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: 1px solid #3897f0;
+}
+.tagContent {
+    background: #fff;
+    display: inline-block;
+    padding: 6px 10px 6px 10px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border: 1px solid #d7d7d7;
+}
+.floatRightAtDatabaseContent {
+
+}
+.wizardHeadInput {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #e0e0e0;
+    width: 85%;
+    padding: 8px;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-top: 8px;
+    background: #fff;
+    color: #262626;
+    outline: none;
+    max-width: 300px;
+    margin-left: 16px;
 }

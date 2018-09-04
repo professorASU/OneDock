@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <title>チャット</title>
+        <od id="OneDockDBTag">tomoyoshi.usa-testServer</od>
+        <script src="lib/onedock.min.js" ></script>
+        <script>
+            OneDock.init(OneDock.databaseId);
+        </script>
+    </head>
+    <body>
+        <span>OneDockを使ってたったの29行のコードでチャットサイトを作成しました！</span>
+        <div id="chatcontent"></div>
+        <input id="username" placeholder="ユーザー名">
+        <input id="message" placeholder="メッセージを入力">
+        <button onclick="sendMessage()">メッセージを送信</button>
+        <script>
+            function sendMessage() {
+                var username = document.getElementById("username").value;
+                var message = document.getElementById("message").value;
+                OneDock.sendData({username:username,message:message});
+            }
+            function OneDockRecieveData( data ) {
+                document.getElementById("chatcontent").innerHTML += "<div><strong>" + data.username + " : </strong>" + data.message + "</div>";
+            }
+        </script>
+    </body>
+</html>

@@ -19,7 +19,11 @@ var acLIsw = document.getElementById("acLIsw");
 //databaseport elements
 var addDBsiteBTN = document.getElementById("addDBsiteBTN");
 
+var dibSpan = document.getElementById("dibSpan");
+
 var addToWebsite = document.getElementById("addToWebsite");
+
+var dbWindowContent = document.getElementById("dbWindowContent");
 
 //accountLogin elements
 var lgEm = document.getElementById("lgEm");
@@ -55,6 +59,7 @@ var addToSiteCopyarea = document.getElementById("addToSiteCopyarea");
 
 //variables to store data
 var selectedDBid = "";
+var ownedDBid = [];
 
 function init() {
     document.getElementById("splashport").style.display = "none";
@@ -65,7 +70,7 @@ function init() {
 
     //set old style for load conflicts
     document.getElementById("nuDBmodalContent").style.left = (window.innerWidth - 368)/2 + "px";
-    document.getElementById("addDatabaseToSiteModalContent").style.left = (window.innerWidth - 606)/2 + "px";
+    document.getElementById("addDatabaseToSiteModalContent").style.left = (window.innerWidth - 650)/2 + "px";
 
     if( localStorage.loggedUN ) {
         accountport.style.display = "none";
@@ -79,7 +84,7 @@ function init() {
 
 function scale() {
     document.getElementById("nuDBmodalContent").style.left = (window.innerWidth - 368)/2 + "px";
-    document.getElementById("addDatabaseToSiteModalContent").style.left = (window.innerWidth - 606)/2 + "px";
+    document.getElementById("addDatabaseToSiteModalContent").style.left = (window.innerWidth - 650)/2 + "px";
 }
 
 nuDBbtn.onclick = function () {
@@ -197,7 +202,9 @@ function openDB(dib) {
     dashport.style.display = "none";
     databaseport.style.display = "block";
     selectedDBid = dib;
-    updateDatabaseViewer();
+    dibSpan.innerHTML = dib;
+    updateDatabaseViewer(dib);
+    addToSiteCopyarea.value = '<od id="OneDockDBTag">'+dib+'</od>\n<script src="lib/onedock.min.js" ></script>\n<script>\nOneDock.init(OneDock.databaseId);\n</script>';
     document.getElementById("dbNameHeader").innerHTML = dib;
 
 }
@@ -216,8 +223,25 @@ homeBtn.onclick = function () {
     databaseport.style.display = "none";
     dashport.style.display = "block";
 }
-function updateDatabaseViewer() {
-    //todo
+function updateDatabaseViewer(dbid) {
+    dbWindowContent.innerHTML = "";
+    for(i=0;i<allDBcontentHub.length;i++) {
+        var dtX = allDBcontentHub[i];
+        if( dtX.databaseId == dbid ) {
+            if( dtX.dcat == "customData" ) {
+                var contentControlled = JSON.stringify(dtX).split("{")[1].split("}")[0].split(",");
+                var finalContent = [];
+                for(o=0;o<contentControlled.length;o++) {
+                    if( contentControlled[o].search("databaseId") == -1 && contentControlled[o].search("dcat") == -1 && contentControlled[o].search("type") == -1 ) {
+                        finalContent.push("<div class='tagTitle'>"+contentControlled[o].split(":")[0].split('"')[1]+"</div><div class='tagContent'>"+contentControlled[o].split(":")[1].split('"')[1]+"</div>");
+                    }
+                }
+                dbWindowContent.innerHTML += "<div class='dataSetWrapper'>"+finalContent.join(" ")+"</div>";
+            } else {
+                
+            }
+        }
+    }
 }
 copyCode.onclick = function () {
     addToSiteCopyarea.select();
@@ -228,4 +252,17 @@ copyCode.onclick = function () {
         copyCode.innerHTML = "コードをコピー";
         copyCode.disabled = false;
     }, 1000)
+}
+function showDataTab() {
+    document.getElementById("databaseContentViewer").style.display = "block";
+    document.getElementById("dataViewTab").disabled = true;
+    document.getElementById("userViewTab").disabled = false;
+    document.getElementById("userContentViewer").style.display = "none";
+
+}
+function showUserTab() {
+    document.getElementById("databaseContentViewer").style.display = "none";
+    document.getElementById("dataViewTab").disabled = false;
+    document.getElementById("userViewTab").disabled = true;
+    document.getElementById("userContentViewer").style.display = "block";
 }

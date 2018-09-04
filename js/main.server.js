@@ -4,6 +4,7 @@ var pwCont = [];
 
 var dbIDcont = [];
 var dbNMcont = [];
+var allDBcontentHub = [];
 
 //elements
 var mailInUseAC = document.getElementById("mailInUseAC");
@@ -58,8 +59,14 @@ var startListening = function() {
                 if( localStorage.loggedUN == dt.owner ) {
                     dbIDcont.push(dt.dbid);
                     dbNMcont.push(dt.na);
+                    localStorage.dbExists = "true";
                     updateDBlist();
                 }
+            }
+        } else if( dt.type == "clientData" ) {
+            if( dbIDcont.indexOf(dt.databaseId) != -1 ) {
+                allDBcontentHub.push(dt);
+                updateDatabaseViewer();
             }
         }
     });

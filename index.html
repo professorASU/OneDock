@@ -53,10 +53,14 @@
                     <button class="logoutBtnDash" id="logoutUserBtn">ログアウト</button>
                     <button class="nuDBbtn" id="nuDBbtn">新しいデータベース</button>
                 </div>
-                <div id="noDBmade">
+                <div id="noDBmade" class="lhg">
                     <img height="100px" class="littleLargeOrNot" src="img/icons/database.svg">
                     <div class="infoBanner">データーベースがありません。</div>
                     <button class="btn smallType" onclick="thirdPartyCall()">データベースを作成</button>
+                </div>
+                <div id="loadingDB" class="lhg" style="display: none;">
+                    <img height="100px" class="littleLargeOrNot" src="img/icons/databaseLoad.svg">
+                    <div class="infoBanner">ロード中です。少し待ってください。</div>
                 </div>
                 <div id="allDBwrapper">
 
@@ -111,6 +115,7 @@
                             <input class="wizardHeadInput" placeholder="ユーザーをメールアドレスで検索">
                         </div>
                         <div id="usrWindowContent">
+
                         </div>
                     </div>
                 </div>

@@ -287,7 +287,7 @@ input:disabled, button:disabled {
 button:active,input[type=submit]:active {
     filter: brightness(70%);
 }
-#noDBmade {
+.lhg {
     width: 90%;
     max-width: 500px;
     background: #262f3d;
@@ -558,4 +558,7 @@ input:read-only {
     outline: none;
     max-width: 300px;
     margin-left: 16px;
+}
+#allDBwrapper {
+    overflow: auto;
 }

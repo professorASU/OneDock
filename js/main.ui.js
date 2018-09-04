@@ -71,6 +71,7 @@ function init() {
     //set old style for load conflicts
     document.getElementById("nuDBmodalContent").style.left = (window.innerWidth - 368)/2 + "px";
     document.getElementById("addDatabaseToSiteModalContent").style.left = (window.innerWidth - 650)/2 + "px";
+    allDBwrapper.style.height = window.innerHeight - 51 - 10 + "px";
 
     if( localStorage.loggedUN ) {
         accountport.style.display = "none";
@@ -85,6 +86,7 @@ function init() {
 function scale() {
     document.getElementById("nuDBmodalContent").style.left = (window.innerWidth - 368)/2 + "px";
     document.getElementById("addDatabaseToSiteModalContent").style.left = (window.innerWidth - 650)/2 + "px";
+    allDBwrapper.style.height = window.innerHeight - 51 - 10 + "px";
 }
 
 nuDBbtn.onclick = function () {
@@ -238,7 +240,7 @@ function updateDatabaseViewer(dbid) {
                 }
                 dbWindowContent.innerHTML += "<div class='dataSetWrapper'>"+finalContent.join(" ")+"</div>";
             } else {
-                
+
             }
         }
     }

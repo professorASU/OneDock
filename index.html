@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Kosugi" rel="stylesheet">
         <script src='https://cdn.firebase.com/js/client/2.4.0/firebase.js'></script>
     </head>
-    <body onload="init()" onresize="scale()">
+    <body class="noselect" onload="init()" onresize="scale()">
         <div id="splashport">
 
         </div>
@@ -99,10 +99,12 @@
                     <div id="dbNameHeader"></div>
                     <div class="dbMasterWindow">
                         <div class="dbWindowHeader">
-                            <button class="dbHeaderBtn" id="addDBsiteBTN">データベースをサイトに追加</button>
-                            <input class="wizardHeadInput" placeholder="データベースを検索">
+                            <button class="dbHeaderBtn purpX" id="addDBsiteBTN">データベースをサイトに追加</button>
+                            <input class="wizardHeadInput" onkeyup="filterDatabase(this)" placeholder="データベースを検索">
                         </div>
-                        <div id="dbWindowContent">
+                        <div id="dbWindowContent" class="contentWindowStyle">
+                        </div>
+                        <div id="dbWindowContentFiltered" class="contentWindowStyle" style="display: none;">
                         </div>
                     </div>
                     <div class="bottomBtnInterface">
@@ -112,9 +114,12 @@
                 <div id="userContentViewer" style="display: none;">
                     <div class="dbMasterWindow">
                         <div class="dbWindowHeader">
-                            <input class="wizardHeadInput" placeholder="ユーザーをメールアドレスで検索">
+                            <input class="wizardHeadInput" onkeyup="filterUsers(this)" placeholder="ユーザーをメールアドレスで検索">
                         </div>
                         <div id="usrWindowContent">
+                            
+                        </div>
+                        <div id="usrFilterContent">
 
                         </div>
                     </div>

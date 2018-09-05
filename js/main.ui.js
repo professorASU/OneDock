@@ -24,6 +24,9 @@ var dibSpan = document.getElementById("dibSpan");
 var addToWebsite = document.getElementById("addToWebsite");
 
 var dbWindowContent = document.getElementById("dbWindowContent");
+var dbWindowContentFiltered = document.getElementById("dbWindowContentFiltered");
+var usrWindowContent = document.getElementById("usrWindowContent");
+var usrFilterContent = document.getElementById("usrFilterContent");
 
 //accountLogin elements
 var lgEm = document.getElementById("lgEm");
@@ -62,6 +65,10 @@ var selectedDBid = "";
 var ownedDBid = [];
 
 function init() {
+    if( localStorage.dbExists == "true" ) {
+        noDBmade.style.display = "none";
+        document.getElementById("loadingDB").style.display = "block";
+    }
     document.getElementById("splashport").style.display = "none";
     document.getElementById("programport").style.display = "block";
     accountLogin.style.display = "none";
@@ -189,6 +196,7 @@ nuDBname.onkeyup = function () {
 function updateDBlist() {
     if( dbIDcont.length != 0 ) {
         noDBmade.style.display = "none";
+        document.getElementById("loadingDB").style.display = "none";
         allDBwrapper.style.display = "block";
         allDBwrapper.innerHTML = "";
         for( i=0; i<dbIDcont.length; i++ ) {
@@ -238,9 +246,19 @@ function updateDatabaseViewer(dbid) {
                         finalContent.push("<div class='tagTitle'>"+contentControlled[o].split(":")[0].split('"')[1]+"</div><div class='tagContent'>"+contentControlled[o].split(":")[1].split('"')[1]+"</div>");
                     }
                 }
-                dbWindowContent.innerHTML += "<div class='dataSetWrapper'>"+finalContent.join(" ")+"</div>";
-            } else {
-
+                dbWindowContent.innerHTML += "<div class='dataSetWrapper'>"+finalContent.join(" ")+"</div>"+"<as></as>";
+            } else if( dtX.dcat == "accountDtx" ) {
+                usrWindowContent.innerHTML = "";
+                usrWindowContent.innerHTML += "<div class='userSetWrapper'>"+dtX.em+"<button class='onlineStatusUsr' id='onlineStatusFor"+dtX.em+"'>オフライン</button></div>"+"<aw></aw>";
+            } else if( dtX.dcat == "userStatus" ) {
+                var inspectID = "onlineStatusFor" + dtX.em;
+                if( dtX.status == "online" ) {
+                    document.getElementById(inspectID).disabled = true;
+                    document.getElementById(inspectID).innerHTML = "オンライン";
+                } else {
+                    document.getElementById(inspectID).disabled = false;
+                    document.getElementById(inspectID).innerHTML = "オフライン";
+                }
             }
         }
     }
@@ -267,4 +285,36 @@ function showUserTab() {
     document.getElementById("dataViewTab").disabled = false;
     document.getElementById("userViewTab").disabled = true;
     document.getElementById("userContentViewer").style.display = "block";
+}
+function filterDatabase(ele) {
+    if( ele.value == "" ) {
+        dbWindowContent.style.display = "block";
+        dbWindowContentFiltered.style.display = "none";
+    } else {
+        var filterTarget = dbWindowContent.innerHTML.split("<as></as>");
+        dbWindowContent.style.display = "none";
+        dbWindowContentFiltered.style.display = "block";
+        dbWindowContentFiltered.innerHTML = "";
+        for( i=0; i<filterTarget.length-1; i++ ) {
+            if(filterTarget[i].search(ele.value) != -1) {
+                dbWindowContentFiltered.innerHTML += filterTarget[i];
+            }
+        }
+    }
+}
+function filterUsers(ele) {
+    if( ele.value == "" ) {
+        usrWindowContent.style.display = "block";
+        usrFilterContent.style.display = "none";
+    } else {
+        var filterTarget = usrWindowContent.innerHTML.split("<aw></aw>");
+        usrWindowContent.style.display = "none";
+        usrFilterContent.style.display = "block";
+        usrFilterContent.innerHTML = "";
+        for( i=0; i<filterTarget.length-1; i++ ) {
+            if(filterTarget[i].search(ele.value) != -1) {
+                usrFilterContent.innerHTML += filterTarget[i];
+            }
+        }
+    }
 }

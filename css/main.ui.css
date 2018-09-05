@@ -389,7 +389,7 @@ input:read-only {
     border-top-right-radius: 9px;
     border-top-left-radius: 9px;
 }
-#dbWindowContent {
+.contentWindowStyle {
     width: 90%;
     margin-right: auto;
     margin-left: auto;
@@ -524,6 +524,11 @@ input:read-only {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.userSetWrapper {
+    background: #fff;
+    border-bottom: 1px solid #d7d7d7;
+    padding: 10px 10px 10px 10px;
+}
 .tagTitle {
     background: #3897f0;
     color: #fff;
@@ -559,6 +564,27 @@ input:read-only {
     max-width: 300px;
     margin-left: 16px;
 }
+.wizardHeadInput:focus {
+    border-color: #3897f0;
+}
 #allDBwrapper {
     overflow: auto;
+}
+.purpX {
+    background: #685bfe;
+    border: 1px solid #685bfe;
+}
+.onlineStatusUsr {
+    float: right;
+    color: #fff;
+    background: #f03838;
+    border: none;
+    padding: 2px 7px 2px 7px;
+    border-radius: 25px;
+}
+.onlineStatusUsr:disabled {
+    background: #8bc34a;
+    border: 1px solid #8bc34a;
+    color: #fff;
+    opacity: 1;
 }

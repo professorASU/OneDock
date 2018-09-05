@@ -214,7 +214,7 @@ function openDB(dib) {
     selectedDBid = dib;
     dibSpan.innerHTML = dib;
     updateDatabaseViewer(dib);
-    addToSiteCopyarea.value = '<od id="OneDockDBTag">'+dib+'</od>\n<script src="https://mushroomisgod.github.io/lib/onedock.min.js" ></script>\n<link rel="stylesheet" href="https://mushroomisgod.github.io/lib/onedock.min.css"><script>\nOneDock.init(OneDock.databaseId);\n</script>';
+    addToSiteCopyarea.value = '<od id="OneDockDBTag">'+dib+'</od>\n<script src="https://mushroomisgod.github.io/OneDock/lib/onedock.min.js" ></script>\n<link rel="stylesheet" href="https://mushroomisgod.github.io/OneDock/lib/onedock.min.css"><script>\nOneDock.init(OneDock.databaseId);\n</script>';
     document.getElementById("dbNameHeader").innerHTML = dib;
 
 }

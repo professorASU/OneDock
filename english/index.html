@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+    <head>
+        <title>OneDock</title>
+        <meta name="viewport" content="width=device-width,user-scalable=no">
+        <link rel="stylesheet" href="css/main.ui.css">
+        <link rel="shortcut icon" type="image/png" href="img/logo/onedockImg.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Kosugi" rel="stylesheet">
+        <script src='https://cdn.firebase.com/js/client/2.4.0/firebase.js'></script>
+    </head>
+    <body class="noselect" onload="init()" onresize="scale()">
+        <div id="splashport">
+
+        </div>
+        <div id="programport" style="display: none;">
+            <div id="accountport" class="noselect">
+                <div class="logoWrapper">
+                    <img height="80px" src="img/logo/onedockImg.png">
+                </div>
+                <div class="accountform">
+                    <form id="accountCreate" action="javascript:ca()">
+                        <div class="darkHeading">新規登録</div>
+                        <input type="email" spellcheck="false" id="acEm" class="inputText" placeholder="メールアドレス"><br>
+                        <div class="errorText" id="mailInUseAC" style="display: none;">このメールアドレスはもう使用されています。</div>
+                        <input type="password" id="acPwO" class="inputText" placeholder="パスワード"><br>
+                        <input type="password" id="acPwT" class="inputText" placeholder="パスワードの再入力"><br>
+                        <div id="pswNotMatchAC" style="display: none;" class="errorText">パスワードが一致していません。</div>
+                        <input type="submit" id="acCAbtn" value="登録する" class="btn" disabled>
+                        <br><br>
+                        <div class="infoBanner">アカウントをお持ちですか？</div>
+                        <button type="button" id="acLIsw" class="btnDull smallTopMarg">ログインする</button>
+                        <br><br>
+                    </form>
+                    <form id="accountLogin" action="javascript:la()">
+                        <div class="darkHeading">ログイン</div>
+                        <input type="email" spellcheck="false" id="lgEm" class="inputText" placeholder="メールアドレス"><br>
+                        <input type="password" id="lgPw" class="inputText" type="password" placeholder="パスワード"><br>
+                        <input type="submit" value="ログイン" id="lgLAbtn" class="btn" disabled>
+                        <div class="errorText" id="wrongInfoLG" style="display: none;">メールアドレスまたはパスワードが間違っています。</div>
+                        <br><br>
+                        <div class="infoBanner">アカウントをお持ちでないですか？</div>
+                        <button id="lgACsw" type="button" class="btnDull smallTopMarg">アカウントを作る</button>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+            <!--dashbee-->
+            <div id="dashport" class="noselect">
+                <div class="dashHeader">
+                    <button class="tpBtn">
+                        <img height="40px" src="img/logo/onedockImg.png">
+                    </button>
+                    <button class="logoutBtnDash" id="logoutUserBtn">ログアウト</button>
+                    <button class="nuDBbtn" id="nuDBbtn">新しいデータベース</button>
+                </div>
+                <div id="noDBmade" class="lhg">
+                    <img height="100px" class="littleLargeOrNot" src="img/icons/database.svg">
+                    <div class="infoBanner">データーベースがありません。</div>
+                    <button class="btn smallType" onclick="thirdPartyCall()">データベースを作成</button>
+                </div>
+                <div id="loadingDB" class="lhg" style="display: none;">
+                    <img height="100px" class="littleLargeOrNot" src="img/icons/databaseLoad.svg">
+                    <div class="infoBanner">ロード中です。少し待ってください。</div>
+                </div>
+                <div id="allDBwrapper">
+
+                </div>
+
+                <!-- The Modal -->
+                <div id="nuDBmodal" class="modal">
+                    <!-- Modal content -->
+                    <div id="nuDBmodalContent" class="modal-content">
+                        <div class="xWrapper">
+                            <div class="xWrapperTitle">データベースを作成</div>
+                            <span id="close" class="close noselect">&times;</span>
+                        </div>
+                        <div class="formWrapper">
+                            <input id="nuDBname" class="inputTextLightVer" placeholder="データベース名を入力"><br>
+                            <div class="infoBannerDark">データベースID（編集不可）</div>
+                            <input id="nuDBid" class="inputTextLightVer" placeholder="データベースのID" disabled><br>
+                            <div class="formSubmitSmallBtnWrapper">
+                                <button class="btn smallType" id="nuDBsubmit" disabled>データベースを作成</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="databaseport">
+                <div class="dashHeader">
+                    <div id=""></div>
+                    <div class="tabWrapper">
+                        <button class="transBtn" id="homeBtn"><img height="30px" src="img/icons/homeIcon.svg"></button>
+                        <button class="tabBtn" id="dataViewTab" onclick="showDataTab()" disabled>データ</button>
+                        <button class="tabBtn" id="userViewTab" onclick="showUserTab()">ユーザー</button>
+                    </div>
+                </div>
+                <div id="databaseContentViewer">
+                    <div id="dbNameHeader"></div>
+                    <div class="dbMasterWindow">
+                        <div class="dbWindowHeader">
+                            <button class="dbHeaderBtn purpX" id="addDBsiteBTN">データベースをサイトに追加</button>
+                            <input class="wizardHeadInput" onkeyup="filterDatabase(this)" placeholder="データベースを検索">
+                        </div>
+                        <div id="dbWindowContent" class="contentWindowStyle">
+                        </div>
+                        <div id="dbWindowContentFiltered" class="contentWindowStyle" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="bottomBtnInterface">
+                        <button class="purpBtn" onclick="window.open('https://github.com/tomocode/OneDock/wiki')">OneDockの使い方を表示</button>
+                    </div>
+                </div>
+                <div id="userContentViewer" style="display: none;">
+                    <div class="dbMasterWindow">
+                        <div class="dbWindowHeader">
+                            <input class="wizardHeadInput" onkeyup="filterUsers(this)" placeholder="ユーザーをメールアドレスで検索">
+                        </div>
+                        <div id="usrWindowContent">
+
+                        </div>
+                        <div id="usrFilterContent">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- The Modal -->
+                <div id="addDatabaseToSiteModal" class="modal">
+                    <!-- Modal content -->
+                    <div id="addDatabaseToSiteModalContent" class="modal-content">
+                        <div class="xWrapper" style="width: 650px;">
+                            <div class="xWrapperTitle">データベースをサイトに追加</div>
+                            <span id="close" class="close noselect">&times;</span>
+                        </div>
+                        <div class="modalDesc">
+                            以下のコードをコピーし、HTMLにて他の&lt;script&gt;タグより前にペーストしてください。
+                        </div>
+                        <div class="codeWrapper">
+                            <div class="codeWrapperChild">
+                                <span class="tag">&lt;od</span>
+                                <span class="attribute">id</span>=<span class="string">"OneDockDBTag"</span><span class="tag">&gt;</span><span id="dibSpan"></span><span class="tag">&lt;/od&gt;</span><br>
+                                <span class="tag">&lt;script</span>
+                                <span class="attribute">src</span>=<span class="string">"https://tomocode.github.io/OneDock/lib/onedock.min.js"</span>
+                                <span class="tag">&gt;&lt;/script&gt;</span><br>
+                                <span class="tag">&lt;link</span>
+                                <span class="attribute">rel</span>=<span class="string">"stylesheet"</span> <span class="attribute">href</span>=<span class="string">"https://tomocode.github.io/OneDock/lib/onedock.min.css"</span><span class="tag">&gt;</span><br>
+                                <span class="tag">&lt;script&gt;</span><br>
+                                <span class="comment">// データベースのIDを設定</span><br>
+                                OneDock.init(OneDock.databaseId);<br>
+                                <span class="tag">&lt;/script&gt;</span>
+                            </div>
+                            <textarea style="height: 0px; opacity: 0;" id="addToSiteCopyarea" value=''></textarea>
+                        </div>
+                        <div class="formWrapper">
+                            <div class="formSubmitSmallBtnWrapper">
+                                <button class="btn smallType" id="copyCode" >コードをコピー</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="js/unbind/mu.js"></script>
+        <script src="js/unbind/ms.js"></script>
+    </body>
+</html>

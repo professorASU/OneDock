@@ -19,27 +19,27 @@
                 </div>
                 <div class="accountform">
                     <form id="accountCreate" action="javascript:ca()">
-                        <div class="darkHeading">新規登録</div>
-                        <input type="email" spellcheck="false" id="acEm" class="inputText" placeholder="メールアドレス"><br>
-                        <div class="errorText" id="mailInUseAC" style="display: none;">このメールアドレスはもう使用されています。</div>
-                        <input type="password" id="acPwO" class="inputText" placeholder="パスワード"><br>
-                        <input type="password" id="acPwT" class="inputText" placeholder="パスワードの再入力"><br>
-                        <div id="pswNotMatchAC" style="display: none;" class="errorText">パスワードが一致していません。</div>
-                        <input type="submit" id="acCAbtn" value="登録する" class="btn" disabled>
+                        <div class="darkHeading">Sign Up</div>
+                        <input type="email" spellcheck="false" id="acEm" class="inputText" placeholder="e-mail address"><br>
+                        <div class="errorText" id="mailInUseAC" style="display: none;">This e-mail is already taken.</div>
+                        <input type="password" id="acPwO" class="inputText" placeholder="Password"><br>
+                        <input type="password" id="acPwT" class="inputText" placeholder="Password again"><br>
+                        <div id="pswNotMatchAC" style="display: none;" class="errorText">Password and id don't match.</div>
+                        <input type="submit" id="acCAbtn" value="Sign Up" class="btn" disabled>
                         <br><br>
-                        <div class="infoBanner">アカウントをお持ちですか？</div>
-                        <button type="button" id="acLIsw" class="btnDull smallTopMarg">ログインする</button>
+                        <div class="infoBanner">Do you have an account?</div>
+                        <button type="button" id="acLIsw" class="btnDull smallTopMarg">Sign in</button>
                         <br><br>
                     </form>
                     <form id="accountLogin" action="javascript:la()">
-                        <div class="darkHeading">ログイン</div>
-                        <input type="email" spellcheck="false" id="lgEm" class="inputText" placeholder="メールアドレス"><br>
-                        <input type="password" id="lgPw" class="inputText" type="password" placeholder="パスワード"><br>
-                        <input type="submit" value="ログイン" id="lgLAbtn" class="btn" disabled>
-                        <div class="errorText" id="wrongInfoLG" style="display: none;">メールアドレスまたはパスワードが間違っています。</div>
+                        <div class="darkHeading">Sign</div>
+                        <input type="email" spellcheck="false" id="lgEm" class="inputText" placeholder="e-mail address"><br>
+                        <input type="password" id="lgPw" class="inputText" type="password" placeholder="password"><br>
+                        <input type="submit" value="Sign in" id="lgLAbtn" class="btn" disabled>
+                        <div class="errorText" id="wrongInfoLG" style="display: none;">Password and id don't match.</div>
                         <br><br>
-                        <div class="infoBanner">アカウントをお持ちでないですか？</div>
-                        <button id="lgACsw" type="button" class="btnDull smallTopMarg">アカウントを作る</button>
+                        <div class="infoBanner">Don't have an account?</div>
+                        <button id="lgACsw" type="button" class="btnDull smallTopMarg">Create your account</button>
                         <br><br>
                     </form>
                 </div>
@@ -50,17 +50,17 @@
                     <button class="tpBtn">
                         <img height="40px" src="img/logo/onedockImg.png">
                     </button>
-                    <button class="logoutBtnDash" id="logoutUserBtn">ログアウト</button>
-                    <button class="nuDBbtn" id="nuDBbtn">新しいデータベース</button>
+                    <button class="logoutBtnDash" id="logoutUserBtn">Sign out</button>
+                    <button class="nuDBbtn" id="nuDBbtn">New data base</button>
                 </div>
                 <div id="noDBmade" class="lhg">
                     <img height="100px" class="littleLargeOrNot" src="img/icons/database.svg">
-                    <div class="infoBanner">データーベースがありません。</div>
-                    <button class="btn smallType" onclick="thirdPartyCall()">データベースを作成</button>
+                    <div class="infoBanner">Sorry, database isn't find.</div>
+                    <button class="btn smallType" onclick="thirdPartyCall()">New database</button>
                 </div>
                 <div id="loadingDB" class="lhg" style="display: none;">
                     <img height="100px" class="littleLargeOrNot" src="img/icons/databaseLoad.svg">
-                    <div class="infoBanner">ロード中です。少し待ってください。</div>
+                    <div class="infoBanner">Now,loding. Please wait few nimuts.</div>
                 </div>
                 <div id="allDBwrapper">
 
@@ -71,15 +71,15 @@
                     <!-- Modal content -->
                     <div id="nuDBmodalContent" class="modal-content">
                         <div class="xWrapper">
-                            <div class="xWrapperTitle">データベースを作成</div>
+                            <div class="xWrapperTitle">New database</div>
                             <span id="close" class="close noselect">&times;</span>
                         </div>
                         <div class="formWrapper">
-                            <input id="nuDBname" class="inputTextLightVer" placeholder="データベース名を入力"><br>
-                            <div class="infoBannerDark">データベースID（編集不可）</div>
-                            <input id="nuDBid" class="inputTextLightVer" placeholder="データベースのID" disabled><br>
+                            <input id="nuDBname" class="inputTextLightVer" placeholder="Database name"><br>
+                            <div class="infoBannerDark">DatabseID（read only）</div>
+                            <input id="nuDBid" class="inputTextLightVer" placeholder="Database ID" disabled><br>
                             <div class="formSubmitSmallBtnWrapper">
-                                <button class="btn smallType" id="nuDBsubmit" disabled>データベースを作成</button>
+                                <button class="btn smallType" id="nuDBsubmit" disabled>New database</button>
                             </div>
                         </div>
                     </div>
@@ -91,16 +91,16 @@
                     <div id=""></div>
                     <div class="tabWrapper">
                         <button class="transBtn" id="homeBtn"><img height="30px" src="img/icons/homeIcon.svg"></button>
-                        <button class="tabBtn" id="dataViewTab" onclick="showDataTab()" disabled>データ</button>
-                        <button class="tabBtn" id="userViewTab" onclick="showUserTab()">ユーザー</button>
+                        <button class="tabBtn" id="dataViewTab" onclick="showDataTab()" disabled>Data</button>
+                        <button class="tabBtn" id="userViewTab" onclick="showUserTab()">User</button>
                     </div>
                 </div>
                 <div id="databaseContentViewer">
                     <div id="dbNameHeader"></div>
                     <div class="dbMasterWindow">
                         <div class="dbWindowHeader">
-                            <button class="dbHeaderBtn purpX" id="addDBsiteBTN">データベースをサイトに追加</button>
-                            <input class="wizardHeadInput" onkeyup="filterDatabase(this)" placeholder="データベースを検索">
+                            <button class="dbHeaderBtn purpX" id="addDBsiteBTN">Add database to your site</button>
+                            <input class="wizardHeadInput" onkeyup="filterDatabase(this)" placeholder="Search database">
                         </div>
                         <div id="dbWindowContent" class="contentWindowStyle">
                         </div>
@@ -108,13 +108,13 @@
                         </div>
                     </div>
                     <div class="bottomBtnInterface">
-                        <button class="purpBtn" onclick="window.open('https://github.com/tomocode/OneDock/wiki')">OneDockの使い方を表示</button>
+                        <button class="purpBtn" onclick="window.open('https://github.com/tomocode/OneDock/wiki')">How to use OneDock</button>
                     </div>
                 </div>
                 <div id="userContentViewer" style="display: none;">
                     <div class="dbMasterWindow">
                         <div class="dbWindowHeader">
-                            <input class="wizardHeadInput" onkeyup="filterUsers(this)" placeholder="ユーザーをメールアドレスで検索">
+                            <input class="wizardHeadInput" onkeyup="filterUsers(this)" placeholder="Search user by e-mail address">
                         </div>
                         <div id="usrWindowContent">
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>OneDockを使って作成するチャットサイト</title>
+		<title>Chat powered by OneDock</title>
 		<od id="OneDockDBTag">prazma-chatApp</od>
 		<script src="https://tomocode.github.io/OneDock/lib/onedock.min.js" ></script>
 		<link rel="stylesheet" href="https://tomocode.github.io/OneDock/lib/onedock.min.css">
@@ -12,23 +12,27 @@
 	<body>
 		<div id="chatContent"></div>
 		<form action="javascript:sendMessage()">
-			<input id="username" placeholder="ユーザーネームを入力">
-			<input id="message" placeholder="メッセージを入力">
-			<input type="submit" value="送信">
+			<input id="username" placeholder="Enter user name">
+			<input id="message" placeholder="Message here">
+			<input type="submit" value="Send">
 		</form>
 		<script>
 			function sendMessage() {
 				var usernameData = document.getElementById("username").value;
 				var messageData = document.getElementById("message").value;
 				//以下のOneDockのコードを使用してデータベースにデータを送信します。
+				//Use follow code to send data to database.
 				OneDock.sendData({username:usernameData,message:messageData});
 			}
 			//以下のOneDockの関数でデータベースからデータを受信します。
+			//Follow function to receive from database
 			function OneDockRecieveData(data) {
 				//inputの入力した内容を消す
+				//Erase text what inputed
 				document.getElementById("username").value = "";
 				document.getElementById("message").value = "";
 				//受信したデータはオブジェクトとして変数dataに保存されています。
+				//Received data is saved var data as object
 				document.getElementById("chatContent").innerHTML += "<div><strong>"+ data.username + "</strong><span>"+ data.message +"</span></div>"
 			}
 		</script>

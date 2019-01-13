@@ -3,7 +3,7 @@
 
 **OneDock** is a service to let background program simple on Web Developerment.  
 
-### How to use OneDOck
+### How to use OneDock
 [Link to **OneDock**](https://tomocode.github.io/OneDock/)
 
 After Create your account and already new database, See [**OneDock wiki**](). 

@@ -8,4 +8,4 @@
 アカウントの作成し、新しいデータベースが用意された後に[**OneDockのWiki**](https://github.com/tomocode/OneDock/wiki)を参照してください。
 
 
-[Enslish](./english/README_English.md)
+[English](./english/README_English.md)
